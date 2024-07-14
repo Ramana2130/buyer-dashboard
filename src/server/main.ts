@@ -8,6 +8,8 @@ import http from "http";
 import authRouter from "./routes/auth.js";
 import sellerRoute from "./routes/seller.js";
 import materialRoute from "./routes/material.js";
+import orderRoute from "./routes/order.js";
+import buyerRoute from "./routes/buyer.js"
 
 import { MONGO_URL, PORT, isDev } from "./constants.js";
 
@@ -29,6 +31,8 @@ const server = http.createServer(app);
 app.use("/auth", authRouter);
 app.use("/api", sellerRoute);
 app.use("/api", materialRoute);
+app.use("/order", orderRoute);
+app.use("/buyer", buyerRoute);
 
 // Start the server
 if (!isDev) {
