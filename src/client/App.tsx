@@ -1,4 +1,5 @@
 import './globals.css'
+import { ThemeProvider } from "@/components/theme-provider"
 import { Dashboard } from "./components/Dashboard";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Product } from './components/Product';
@@ -13,7 +14,7 @@ import SettingsDisplayPage from './components/display/Page';
 function App() {
 
   return (
-
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme"> 
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Dashboard />} ></Route>
@@ -27,6 +28,7 @@ function App() {
       <Route path='/examples/forms/display' element={<SettingsDisplayPage />} ></Route>
     </Routes>
     </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
