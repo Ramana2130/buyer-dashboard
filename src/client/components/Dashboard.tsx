@@ -77,6 +77,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { ModeToggle } from "./mode-toggle"
 
 export function Dashboard() {
   return (
@@ -261,13 +262,13 @@ export function Dashboard() {
                 size="icon"
                 className="overflow-hidden rounded-full"
               >
-                {/* <Image
+                <img
                   src="/placeholder-user.jpg"
                   width={36}
                   height={36}
                   alt="Avatar"
                   className="overflow-hidden rounded-full"
-                /> */}
+                />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -279,11 +280,12 @@ export function Dashboard() {
               <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          <ModeToggle />
         </header>
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
           <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
             <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-              <Card
+              {/* <Card
                 className="sm:col-span-2" x-chunk="dashboard-05-chunk-0"
               >
                 <CardHeader className="pb-3">
@@ -296,7 +298,7 @@ export function Dashboard() {
                 <CardFooter>
                   <Button>Create New Order</Button>
                 </CardFooter>
-              </Card>
+              </Card> */}
               <Card x-chunk="dashboard-05-chunk-1">
                 <CardHeader className="pb-2">
                   <CardDescription>This Week</CardDescription>
