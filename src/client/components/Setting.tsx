@@ -1,11 +1,6 @@
-import SettingsLayout from "./Layout";
+import SettingsLayout from "../layouts/SettingsLayout";
 import { SidebarNav } from "./SettingsSidebar";
 
-
 export function Settings() {
-  return (   
-    <> 
-    <SettingsLayout children={undefined} />
-    </>
-  )
+  return <SettingsLayout />;
 }
