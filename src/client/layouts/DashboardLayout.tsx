@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
 import Sidebar from "@/components/Sidebar";
+import { LoadingSpinnerFull } from "@/components/ui/LoadingSpinner";
 
 const DashboardLayout = () => {
   return (
@@ -10,13 +11,7 @@ const DashboardLayout = () => {
         <Sidebar />
       </div>
       <div className="w-full bg-muted/40 relative">
-        <Suspense
-          fallback={
-            <div className="grid place-it ems-center h-full w-full">
-              <span>Loading...</span>
-            </div>
-          }
-        >
+        <Suspense fallback={<LoadingSpinnerFull />}>
           <Outlet />
         </Suspense>
       </div>

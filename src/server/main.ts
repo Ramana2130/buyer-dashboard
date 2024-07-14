@@ -1,27 +1,41 @@
 import express from "express";
 import ViteExpress from "vite-express";
-import dotenv from "dotenv";
+
+import cors from "cors";
 import mongoose from "mongoose";
-import sellerRoute from './routes/seller.js';
-import materialRoute from './routes/material.js';
+import http from "http";
+
+import authRouter from "./routes/auth.js";
+import sellerRoute from "./routes/seller.js";
+import materialRoute from "./routes/material.js";
+
+import { MONGO_URL, PORT, isDev } from "./constants.js";
+
 const app = express();
+
+// Middleware
+app.use(cors());
 app.use(express.json());
-dotenv.config();
 
-const MONGO_URL = process.env.MONGO_URL;
+// Connect to MongoDB
+mongoose //
+  .connect(MONGO_URL)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((error) => console.error(error.message));
 
-mongoose.connect(MONGO_URL ?? '')
-.then(() => console.log("Database connected Successfully"))
-.catch((error) => console.log("Database not connected " , error))
+const server = http.createServer(app);
 
+// Routes
+app.use("/auth", authRouter);
+app.use("/api", sellerRoute);
+app.use("/api", materialRoute);
+
+// Start the server
+if (!isDev) {
+  ViteExpress.bind(app, server);
+}
+
+server.listen(PORT, () => console.log(`Running on port ${PORT}`));
 app.get("/hello", (_, res) => {
   res.send("Hello Vite + React + TypeScript!");
 });
-
-app.use('/api', sellerRoute);
-app.use('/api', materialRoute);
-
-
-ViteExpress.listen(app, 3000, () =>
-  console.log("Server is listening on port 3000..."),
-);

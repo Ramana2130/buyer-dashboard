@@ -1,17 +1,51 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-export function LoginForm() {
+import axios from "axios";
+import { useAuth } from "@/context/AuthContext";
+import { toast } from "sonner";
+
+export function LoginPage() {
+  const { saveCredentials } = useAuth();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const response = await axios.post("/auth/login", data);
+      saveCredentials(response.data);
+      toast.success("Logged in successfully");
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 500);
+    } catch (error) {
+      console.log(error);
+
+      /* @ts-ignore */
+      if (error?.response) {
+        if (error?.response.data) {
+          console.log(error.response.data.message);
+        } else {
+          console.log(error.message);
+        }
+      }
+    }
+  };
+
   return (
     <Card className="mx-auto max-w-sm mt-36">
       <CardHeader>
@@ -21,11 +55,12 @@ export function LoginForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-4">
+        <form className="grid gap-4" onSubmit={handleSubmit}>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
+              name="email"
               type="email"
               placeholder="m@example.com"
               required
@@ -38,7 +73,7 @@ export function LoginForm() {
                 Forgot your password?
               </Link>
             </div>
-            <Input id="password" type="password" required />
+            <Input id="password" type="password" name="password" required />
           </div>
           <Button type="submit" className="w-full">
             Login
@@ -46,7 +81,7 @@ export function LoginForm() {
           <Button variant="outline" className="w-full">
             Login with Google
           </Button>
-        </div>
+        </form>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{" "}
           <Link to="/register" className="underline">
@@ -55,5 +90,5 @@ export function LoginForm() {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

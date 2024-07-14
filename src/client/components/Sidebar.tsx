@@ -55,10 +55,10 @@ const Sidebar = () => {
   const currentPath = useMatches();
 
   function getCurrentActiveLink() {
-    if (currentPath.length < 2) return "";
+    if (currentPath.length < 3) return "";
 
     const activeLink = links.findLast((link) => {
-      return link.href === currentPath[1].pathname;
+      return link.href === currentPath[2].pathname;
     });
 
     return activeLink?.href ?? "";
