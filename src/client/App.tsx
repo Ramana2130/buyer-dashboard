@@ -10,6 +10,8 @@ import SettingsAccountPage from './components/account/Page';
 import SettingsAppearancePage from './components/appearance/Page';
 import SettingsNotificationsPage from './components/notifications/Page';
 import SettingsDisplayPage from './components/display/Page';
+import { LoginForm } from './components/Login';
+import { RegisterForm } from './components/RegisterForm';
 
 function App() {
 
@@ -17,6 +19,8 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme"> 
     <BrowserRouter>
     <Routes>
+      <Route path='/login' element={<LoginForm />} ></Route>
+      <Route path='/register' element={<RegisterForm />} ></Route>
       <Route path='/' element={<Dashboard />} ></Route>
       <Route path='/product' element={<Product />} ></Route>
       <Route path='/editproduct' element={<EditProduct />} ></Route>

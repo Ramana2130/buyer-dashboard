@@ -228,12 +228,12 @@ export function Product() {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link to="#">Products</Link>
+                  <Link to="#">Orders</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>All Products</BreadcrumbPage>
+                <BreadcrumbPage>All Orders</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -274,14 +274,14 @@ export function Product() {
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           <Tabs defaultValue="all">
             <div className="flex items-center">
-              <TabsList>
+              {/* <TabsList>
                 <TabsTrigger value="all">All</TabsTrigger>
                 <TabsTrigger value="active">Active</TabsTrigger>
                 <TabsTrigger value="draft">Draft</TabsTrigger>
                 <TabsTrigger value="archived" className="hidden sm:flex">
                   Archived
                 </TabsTrigger>
-              </TabsList>
+              </TabsList> */}
               <div className="ml-auto flex items-center gap-2">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -296,11 +296,11 @@ export function Product() {
                     <DropdownMenuLabel>Filter by</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuCheckboxItem checked>
-                      Active
+                      Name
                     </DropdownMenuCheckboxItem>
-                    <DropdownMenuCheckboxItem>Draft</DropdownMenuCheckboxItem>
+                    <DropdownMenuCheckboxItem>Address</DropdownMenuCheckboxItem>
                     <DropdownMenuCheckboxItem>
-                      Archived
+                      Date
                     </DropdownMenuCheckboxItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -310,20 +310,20 @@ export function Product() {
                     Export
                   </span>
                 </Button>
-                <Button size="sm" className="h-7 gap-1">
+                {/* <Button size="sm" className="h-7 gap-1">
                   <PlusCircle className="h-3.5 w-3.5" />
                   <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
                     Add Product
                   </span>
-                </Button>
+                </Button> */}
               </div>
             </div>
             <TabsContent value="all">
               <Card x-chunk="dashboard-06-chunk-0">
                 <CardHeader>
-                  <CardTitle>Products</CardTitle>
+                  <CardTitle>Order Confirmation</CardTitle>
                   <CardDescription>
-                    Manage your products and view their sales performance.
+                    Manage your order and view their sales performance.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -333,14 +333,14 @@ export function Product() {
                         <TableHead className="hidden w-[100px] sm:table-cell">
                           <span className="sr-only">Image</span>
                         </TableHead>
-                        <TableHead>Name</TableHead>
-                        <TableHead>Status</TableHead>
+                        <TableHead>Seller Name</TableHead>
+                        <TableHead>Seller Address</TableHead>
                         <TableHead>Price</TableHead>
                         <TableHead className="hidden md:table-cell">
-                          Total Sales
+                          Total Quantity
                         </TableHead>
                         <TableHead className="hidden md:table-cell">
-                          Created at
+                          Order at
                         </TableHead>
                         <TableHead>
                           <span className="sr-only">Actions</span>
@@ -385,8 +385,8 @@ export function Product() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                              <DropdownMenuItem>Edit</DropdownMenuItem>
-                              <DropdownMenuItem>Delete</DropdownMenuItem>
+                              <DropdownMenuItem>Accept</DropdownMenuItem>
+                              <DropdownMenuItem>Reject</DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </TableCell>
